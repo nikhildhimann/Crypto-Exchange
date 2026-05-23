@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: crypto-wallet-api
+    env: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: DEMO_MODE
+        value: true
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 6001
+      - key: JOBS_ENABLED
+        value: false
+      - key: QUEUE_ENABLED
+        value: false
+      - key: REQUEST_LOGGING_ENABLED
+        value: false
+      - key: SWAP_ENABLED
+        value: false
+      - key: NFT_MARKETPLACE_ENABLED
+        value: false
+      - key: CONVERSION_WORKER_ENABLED
+        value: false
+      - key: CONVERSION_PAYOUT_EXECUTION_ENABLED
+        value: false
+      - key: NFT_HISTORY_SYNC_ENABLED
+        value: false
+      - key: NFT_RECONCILIATION_ENABLED
+        value: false
+      - key: OPERATIONS_MARKET_PRICE_CACHE_TTL_MS
+        value: 300000
+      - key: OPERATIONS_BALANCE_SYNC_COOLDOWN_MS
+        value: 60000
+      - key: OPERATIONS_BALANCE_LIST_CACHE_TTL_MS
+        value: 60000
