@@ -71,6 +71,11 @@ function createProtectionUnavailableError(scope) {
 }
 
 function assertProtectionAvailable(scope) {
+  const redisRequired = String(process.env.REDIS_REQUIRED_IN_PRODUCTION || "false").toLowerCase() === "true";
+  if (!redisRequired) {
+    return;
+  }
+
   const status = redis.getStatus();
   if (status.enabled) {
     return;

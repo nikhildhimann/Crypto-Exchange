@@ -142,6 +142,10 @@ function buildRedisRateLimitKey({
 }
 
 function shouldFailClosed({ failClosed }) {
+  const redisRequired = String(process.env.REDIS_REQUIRED_IN_PRODUCTION || "false").toLowerCase() === "true";
+  if (!redisRequired) {
+    return false;
+  }
   return Boolean(failClosed);
 }
 
